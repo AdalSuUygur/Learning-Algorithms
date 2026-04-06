@@ -15,45 +15,24 @@
 # Input: nums = [3,3], target = 6
 # Output: [0,1]
 
-seen = {} #set tanımladık, sözlük tanımlamak daha mantıklı index tutmak için
+#region Solution 1
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        dict_nums = {}
 
-a + b = target
-target - a = b
-
-for num in nums:
-    if target - num in seen:
-        print(f"Found it! its {num}")
-    if num not in seen:
-        seen.add(num)
-    k = target - num
-
-
-#region first try
-# nums = [3,2,4]
-# target = 6
-# hesaplanan_numara = 0
-
-# for i in range(len(nums)):
-#     for j in range (len(nums)):
-#         if i == j:
-#             continue #önemsiz bulduk
-#         else:
-#             hesaplanan_numara = nums[i] + nums[j]
-#             if hesaplanan_numara == target:
-#                 print(f"Because nums[{i}] + nums[{j}] == {hesaplanan_numara}, we return [{i},{j}]")
-#                 exit()
+        for index, number in enumerate(nums):
+            missing = target - number
+            if missing in dict_nums:
+                return [dict_nums[missing], index]
+            dict_nums[number] = index
 #endregion
 
-#region leetcode sayfasında fonksiyon olarak yazdığım çözüm: 
-# class Solution:
-#     def twoSum(self, nums: List[int], target: int) -> List[int]:
-#         for i in range(len(nums)):
-#             for j in range (len(nums)):
-#                 if i == j:
-#                     continue #önemsiz bulduk
-#                 else:
-#                     hesaplanan_numara = nums[i] + nums[j]
-#                     if hesaplanan_numara == target:
-#                         print(f"Because nums[{i}] + nums[{j}] == {hesaplanan_numara}, we return [{i},{j}]")
-#                         return [i,j]
+#region Solution 2
+        # seen = {} # gördüklerimizi/işlediklerimizi atacağımız liste
+        # for index, num in enumerate(nums):
+        # #    print(index, num) #test
+        #     tamamlayici = target - num
+        #     if tamamlayici in seen:
+        #         return [seen[tamamlayici], index]
+        #     seen[num] = index
 #endregion
